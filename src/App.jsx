@@ -40,7 +40,11 @@ function App() {
 			formData.append('description', formFields.description);
 			formData.append('notes', formFields.notes);
 			formData.append('fileName', uploadFile.data.name);
-			const response = await fetch(`${backendUrl}/uploadfile/234`, {
+
+			const postUrl = formFields.optionalFileName.trim() === '' ? `${backendUrl}/uploadfile` :  `${backendUrl}/uploadfile/${formFields.optionalFileName}`;
+
+
+			const response = await fetch(postUrl, {
 				method: 'POST',
 				body: formData
 			});
@@ -105,6 +109,15 @@ function App() {
 								value={formFields.notes}
 								onChange={(e) =>
 									handleFormFieldChange(e, 'notes')
+								}
+							/>
+
+							<label htmlFor="optionalFileName">Optional file name</label>
+							<input
+								type="text"
+								value={formFields.optionalFileName}
+								onChange={(e) =>
+									handleFormFieldChange(e, 'optionalFileName')
 								}
 							/>
 
