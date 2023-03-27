@@ -40,7 +40,7 @@ function App() {
 			formData.append('description', formFields.description);
 			formData.append('notes', formFields.notes);
 			formData.append('fileName', uploadFile.data.name);
-			const response = await fetch(`${backendUrl}/uploadfile`, {
+			const response = await fetch(`${backendUrl}/uploadfile/234`, {
 				method: 'POST',
 				body: formData
 			});
