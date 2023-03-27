@@ -6,7 +6,8 @@ const backendUrl = 'http://localhost:5889';
 const _initialFormFields = {
 	title: '',
 	description: '',
-	notes: ''
+	notes: '',
+	optionalFileName: ''
 };
 const _initialUploadFile = {
 	preview: '',
@@ -41,8 +42,10 @@ function App() {
 			formData.append('notes', formFields.notes);
 			formData.append('fileName', uploadFile.data.name);
 
-			const postUrl = formFields.optionalFileName.trim() === '' ? `${backendUrl}/uploadfile` :  `${backendUrl}/uploadfile/${formFields.optionalFileName}`;
+			const postUrl = formFields.optionalFileName.trim() === '' ? `${backendUrl}/uploadfile/NONAME` : `${backendUrl}/uploadfile/${formFields.optionalFileName}`;
 
+
+			console.log(postUrl);
 
 			const response = await fetch(postUrl, {
 				method: 'POST',
